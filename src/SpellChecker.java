@@ -52,9 +52,29 @@ public class SpellChecker
   */
   public boolean binarySpellCheck(String word)
   {
-    /* IMPLEMENT ME! */
+    int numChecks = 0;
+    int left = 0;
+    int right = dictionary.size() - 1;
 
-    return false; // STUB
+    while (left <= right)
+    {
+      int middle = (left + right) / 2;
+      numChecks++;
+      if (word.compareTo(dictionary.get(middle)) < 0)
+      {
+        right = middle - 1;
+      }
+      else if (word.compareTo(dictionary.get(middle)) > 0)
+      {
+        left = middle + 1;
+      }
+      else {
+        System.out.println("-- BINARY SEARCH: Number of words checked (loops/runtime): " + numChecks);
+        return true;
+      }
+    }
+    System.out.println("-- BINARY SEARCH: Number of words checked (loops/runtime): " + numChecks);
+    return false;
   }
 
   // private helper method, called in the constructor, which loads the words
